@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bokaro Steel Plant Town Admininstration Complain Portal</title>
+    <style>
+     .container {
+  position: relative;
+  font-family: Arial;
+}
+
+.text-block {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: black;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+        /* Style the comments container */
+        #comments {
+            margin-top: 20px;
+        }
+
+        /* Style the comment input and buttons */
+        #comment-input {
+            width: 80%;
+            padding: 5px;
+        }
+
+        #submit-button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .comment {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+
+        .like-dislike {
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .rating {
+            margin-top: 10px;
+        }
+
+        .count {
+            display: block;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+     <div class="container">
+  <img src="C:\Users\SANJEEV SINGH\Downloads\Bokaro-steel-plants.jpg" alt="Bokaro Steel Plant" style="width:100%;">
+  <div class="text-block">
+    <h4>Bokaro Steel Plant</h4>
+    <p>Post Your Complaints For Bokaro Steel Plant Town Administration Here</p>
+
+    <p>Let them know that not everything is right</p>
+  </div>
+</div>
+
+    <h1>Post Your Complaints For Bokaro Town Administration Here</h1>
+    <div>
+        <input type="text" id="comment-input" placeholder="Enter your comment" onkeyup="checkEnterKey(event)">
+        <button id="submit-button" onclick="postComment()">Submit</button>
+    </div>
+    
+    <h2>Complaints</h2>
+    <div id="comments">
+        <!-- Comments will be displayed here -->
+    </div>
+
+    <script>
+        function postComment() {
+            // Get the user's comment from the input field
+            var commentText = document.getElementById("comment-input").value;
+
+            // Clear the input field
+            document.getElementById("comment-input").value = "";
+
+            if (commentText.trim() === "") {
+                alert("Please enter a comment.");
+                return;
+            }
+
+            // Create a new comment element
+            var comment = document.createElement("div");
+            comment.className = "comment";
+
+            // Create a paragraph element to display the comment text
+            var commentParagraph = document.createElement("p");
+            commentParagraph.textContent = commentText;
+
+            // Create like and dislike buttons for the comment
+            var likeButton = document.createElement("span");
+            likeButton.className = "like-dislike";
+            likeButton.textContent = "👍";
+            likeButton.onclick = function() {
+                // Handle like action here
+                alert("Liked comment: " + commentText);
+            };
+
+            var dislikeButton = document.createElement("span");
+            dislikeButton.className = "like-dislike";
+            dislikeButton.textContent = "👎";
+            dislikeButton.onclick = function() {
+                // Handle dislike action here
+                alert("Disliked comment: " + commentText);
+            };
+
+            // Create a 5-star rating input
+            var ratingInput = document.createElement("input");
+            ratingInput.type = "range";
+            ratingInput.min = "1";
+            ratingInput.max = "5";
+            ratingInput.className = "rating";
+            ratingInput.value = "3"; // Default to 3 stars
+            ratingInput.oninput = function() {
+                // Handle rating change here
+                alert("Rated comment: " + commentText + " - " + ratingInput.value + " stars");
+            };
+
+            // Create elements to display counts
+            var likeCount = document.createElement("span");
+            likeCount.className = "count";
+            likeCount.textContent = "Liked: 0";
+
+            var dislikeCount = document.createElement("span");
+            dislikeCount.className = "count";
+            dislikeCount.textContent = "Disliked: 0";
+
+            var ratingCount = document.createElement("span");
+            ratingCount.className = "count";
+            ratingCount.textContent = "Rating: 0";
+
+            // Append the paragraph, like, dislike buttons, and rating input to the comment element
+            comment.appendChild(commentParagraph);
+            comment.appendChild(likeButton);
+            comment.appendChild(dislikeButton);
+            comment.appendChild(ratingInput);
+            comment.appendChild(likeCount);
+            comment.appendChild(dislikeCount);
+            comment.appendChild(ratingCount);
+
+            // Append the comment element to the comments container
+            var commentsContainer = document.getElementById("comments");
+            commentsContainer.appendChild(comment);
+        }
+
+        function checkEnterKey(event) {
+            if (event.key === "Enter") {
+                postComment();
+            }
+        }
+    </script>
+         
+    <p>This Website is Developed By Sanjeev Kumar Singh</p>
+</body>
+</html>
